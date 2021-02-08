@@ -1,5 +1,11 @@
-import * as React from "react";
+import React from 'react';
+import { IncrementalForm } from './IncrementalForm';
+import { mockedForm } from '../__mocks__/steps';
 
 export default function App() {
-  return <h1>Form Test</h1>;
+  return (
+    <>
+      <IncrementalForm form={mockedForm} />
+    </>
+  );
 }

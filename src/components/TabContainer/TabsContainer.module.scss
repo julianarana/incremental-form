@@ -1,0 +1,13 @@
+.container {
+  &__tabs {
+    display: flex;
+  }
+
+  &__content {
+    background: #fff;
+    border-top: 1px solid #333;
+    min-height: 100px;
+    width: 100%;
+  
+  }
+}
