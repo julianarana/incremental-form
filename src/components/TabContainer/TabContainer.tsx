@@ -5,15 +5,20 @@ import styles from './TabsContainer.module.scss';
 interface TabContainerProps {
   currentTab?: number;
   onTabSelected?: (tab: number) => void;
+  onPrevSelected?: () => void;
+  onNextSelected?: () => void;
   tabNames: string[];
 }
 
 export const TabContainer = ({
   children,
   currentTab,
+  onNextSelected,
+  onPrevSelected,
   onTabSelected,
   tabNames,
 }: PropsWithChildren<TabContainerProps>): ReactElement => {
+  
   const onTabClicked = (selected: number): void => {
     if (onTabSelected) {
       onTabSelected(selected);
@@ -23,6 +28,7 @@ export const TabContainer = ({
   return (
     <div className={styles.container}>
       <div className={styles.container__tabs}>
+        <Tab key="<" name="<" onClick={onPrevSelected} />
         {tabNames.map(
           (tabName: string, index: number): ReactNode => (
             <Tab
@@ -33,6 +39,7 @@ export const TabContainer = ({
             />
           )
         )}
+        <Tab key=">" name=">" onClick={onNextSelected} />
       </div>
       <div className={styles.container__content}>{children}</div>
     </div>

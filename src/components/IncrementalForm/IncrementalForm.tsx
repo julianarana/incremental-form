@@ -12,7 +12,7 @@ interface IncremantalFormProps {
 export const IncrementalForm = ({
   form,
 }: IncremantalFormProps): ReactElement => {
-  const { currentStep, setStep } = useFormState();
+  const { currentStep, setNextStep, setPrevStep, setStep, updateEntry } = useFormState(form.steps);
 
   const entries = useMemo(() => {
     return form.steps[currentStep].entries;
@@ -29,8 +29,10 @@ export const IncrementalForm = ({
         tabNames={tabNames}
         currentTab={currentStep}
         onTabSelected={setStep}
+        onPrevSelected={setPrevStep}
+        onNextSelected={setNextStep}
       >
-        <FormContent entries={entries} />
+        <FormContent entries={entries} onChange={updateEntry} />
       </TabContainer>
     </section>
   );
